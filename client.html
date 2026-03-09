@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexBot — Portal do Cliente</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="client.css">
+</head>
+<body>
+
+    <!-- Login Screen -->
+    <div class="login-screen" id="login-screen">
+        <div class="login-bg-effects">
+            <div class="login-orb login-orb-1"></div>
+            <div class="login-orb login-orb-2"></div>
+            <div class="login-grid-overlay"></div>
+        </div>
+        <div class="login-card">
+            <div class="login-logo">
+                <svg width="48" height="48" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="url(#lg)"/>
+                    <path d="M10 12C10 10.8954 10.8954 10 12 10H20C21.1046 10 22 10.8954 22 12V18C22 19.1046 21.1046 20 20 20H18L14 23V20H12C10.8954 20 10 19.1046 10 18V12Z" fill="white"/>
+                    <circle cx="14" cy="15" r="1.2" fill="#6C5CE7"/><circle cx="18" cy="15" r="1.2" fill="#6C5CE7"/>
+                    <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#6C5CE7"/><stop offset="1" stop-color="#A29BFE"/></linearGradient></defs>
+                </svg>
+                <span>NexBot <strong>Portal</strong></span>
+            </div>
+            <h2>Portal do Cliente</h2>
+            <p>Configure e personalize seu chatbot</p>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">E-mail</label>
+                    <input type="email" id="login-email" placeholder="seuemail@empresa.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Senha</label>
+                    <input type="password" id="login-password" placeholder="••••••••" required>
+                </div>
+                <div class="login-error" id="login-error"></div>
+                <button type="submit" class="btn-login" id="login-btn">
+                    <span>Acessar Painel</span>
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+            </form>
+            <p class="login-hint">Credenciais demo: <strong>cliente@empresa.com</strong> / <strong>cliente123</strong></p>
+        </div>
+    </div>
+
+    <!-- Client Portal -->
+    <div class="portal" id="portal" style="display:none;">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                        <rect width="32" height="32" rx="8" fill="url(#slg2)"/>
+                        <path d="M10 12C10 10.8954 10.8954 10 12 10H20C21.1046 10 22 10.8954 22 12V18C22 19.1046 21.1046 20 20 20H18L14 23V20H12C10.8954 20 10 19.1046 10 18V12Z" fill="white"/>
+                        <circle cx="14" cy="15" r="1.2" fill="#6C5CE7"/><circle cx="18" cy="15" r="1.2" fill="#6C5CE7"/>
+                        <defs><linearGradient id="slg2" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#6C5CE7"/><stop offset="1" stop-color="#A29BFE"/></linearGradient></defs>
+                    </svg>
+                    <span class="sidebar-brand">NexBot</span>
+                </div>
+                <button class="sidebar-close" id="sidebar-close">×</button>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-page="appearance" id="nav-appearance">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 10C3 6.13401 6.13401 3 10 3V3C11.3845 3 12.7378 3.41054 13.889 4.18029L10.5 10H17V10C17 13.866 13.866 17 10 17V17C6.13401 17 3 13.866 3 10V10Z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+                    <span>Aparência</span>
+                </a>
+                <a href="#" class="nav-item" data-page="messages" id="nav-messages">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M17 13C17 13.5523 16.5523 14 16 14H6L2 18V4C2 3.44772 2.44772 3 3 3H16C16.5523 3 17 3.44772 17 4V13Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span>Mensagens</span>
+                </a>
+                <a href="#" class="nav-item" data-page="knowledge" id="nav-knowledge">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2 4C2 2.89543 2.89543 2 4 2H8L10 4H16C17.1046 4 18 4.89543 18 6V16C18 17.1046 17.1046 18 16 18H4C2.89543 18 2 17.1046 2 16V4Z" stroke="currentColor" stroke-width="1.5"/><path d="M6 10H14M6 13H11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    <span>Base de Conhecimento</span>
+                </a>
+                <a href="#" class="nav-item" data-page="embed" id="nav-embed">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 5L2 10L7 15M13 5L18 10L13 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span>Código de Integração</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="index.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 10L10 3L17 10M5 8V16H8V12H12V16H15V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span>Ver Site</span>
+                </a>
+                <a href="#" class="nav-item" id="logout-btn">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 17H4C3.44772 17 3 16.5523 3 16V4C3 3.44772 3.44772 3 4 3H7M13 14L17 10L13 6M17 10H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span>Sair</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="topbar">
+                <button class="mobile-menu-btn" id="mobile-menu-btn"><span></span><span></span><span></span></button>
+                <div class="topbar-info">
+                    <h1 id="page-title">Aparência do Chatbot</h1>
+                    <span class="topbar-sub" id="topbar-sub">Personalize o visual do seu chatbot</span>
+                </div>
+                <div class="topbar-actions">
+                    <button class="btn-save" id="save-all-btn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2H11L14 5V14H2V2Z" stroke="currentColor" stroke-width="1.5"/><path d="M5 2V5H10V2M5 14V9H11V14" stroke="currentColor" stroke-width="1.5"/></svg>
+                        Salvar Tudo
+                    </button>
+                </div>
+            </header>
+
+            <!-- Appearance Page -->
+            <div class="page active" id="page-appearance">
+                <div class="config-layout">
+                    <div class="config-panel">
+                        <div class="config-section">
+                            <h3 class="config-title">🤖 Identidade do Bot</h3>
+                            <div class="form-group">
+                                <label for="bot-name">Nome do Chatbot</label>
+                                <input type="text" id="bot-name" value="Assistente Virtual" placeholder="Ex: Atendente da Loja">
+                            </div>
+                            <div class="form-group">
+                                <label for="bot-subtitle">Subtítulo / Status</label>
+                                <input type="text" id="bot-subtitle" value="Online agora" placeholder="Ex: Online • Responde em segundos">
+                            </div>
+                            <div class="form-group">
+                                <label for="bot-avatar">Emoji / Avatar</label>
+                                <div class="avatar-picker">
+                                    <button class="avatar-option active" data-avatar="🤖">🤖</button>
+                                    <button class="avatar-option" data-avatar="💬">💬</button>
+                                    <button class="avatar-option" data-avatar="🧠">🧠</button>
+                                    <button class="avatar-option" data-avatar="⚡">⚡</button>
+                                    <button class="avatar-option" data-avatar="🎯">🎯</button>
+                                    <button class="avatar-option" data-avatar="🌟">🌟</button>
+                                    <button class="avatar-option" data-avatar="🚀">🚀</button>
+                                    <button class="avatar-option" data-avatar="💡">💡</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="config-section">
+                            <h3 class="config-title">🎨 Cores e Estilo</h3>
+                            <div class="color-row">
+                                <div class="form-group">
+                                    <label for="color-primary">Cor Primária</label>
+                                    <div class="color-input-wrap">
+                                        <input type="color" id="color-primary" value="#6C5CE7">
+                                        <input type="text" id="color-primary-hex" value="#6C5CE7" class="color-hex-input">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="color-header">Cor do Cabeçalho</label>
+                                    <div class="color-input-wrap">
+                                        <input type="color" id="color-header" value="#1A1A2E">
+                                        <input type="text" id="color-header-hex" value="#1A1A2E" class="color-hex-input">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="color-row">
+                                <div class="form-group">
+                                    <label for="color-bot-msg">Cor Mensagem Bot</label>
+                                    <div class="color-input-wrap">
+                                        <input type="color" id="color-bot-msg" value="#2D2D3F">
+                                        <input type="text" id="color-bot-msg-hex" value="#2D2D3F" class="color-hex-input">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="color-user-msg">Cor Mensagem Usuário</label>
+                                    <div class="color-input-wrap">
+                                        <input type="color" id="color-user-msg" value="#6C5CE7">
+                                        <input type="text" id="color-user-msg-hex" value="#6C5CE7" class="color-hex-input">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="border-radius">Arredondamento</label>
+                                <div class="range-wrap">
+                                    <input type="range" id="border-radius" min="0" max="24" value="16">
+                                    <span class="range-value" id="radius-value">16px</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="config-section">
+                            <h3 class="config-title">📐 Posição e Tamanho</h3>
+                            <div class="form-group">
+                                <label>Posição na Tela</label>
+                                <div class="position-picker">
+                                    <button class="position-option" data-position="left">
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="12" width="5" height="5" rx="1" fill="currentColor"/></svg>
+                                        Esquerda
+                                    </button>
+                                    <button class="position-option active" data-position="right">
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="12" y="12" width="5" height="5" rx="1" fill="currentColor"/></svg>
+                                        Direita
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="widget-size">Tamanho do Widget</label>
+                                <select id="widget-size">
+                                    <option value="small">Pequeno (340px)</option>
+                                    <option value="medium" selected>Médio (380px)</option>
+                                    <option value="large">Grande (420px)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Messages Page -->
+            <div class="page" id="page-messages">
+                <div class="config-layout">
+                    <div class="config-panel">
+                        <div class="config-section">
+                            <h3 class="config-title">👋 Mensagem de Boas-vindas</h3>
+                            <div class="form-group">
+                                <label for="welcome-msg">Mensagem inicial do bot</label>
+                                <textarea id="welcome-msg" rows="3" placeholder="Olá! Como posso ajudá-lo?">Olá! 👋 Como posso ajudá-lo hoje?</textarea>
+                            </div>
+                        </div>
+
+                        <div class="config-section">
+                            <h3 class="config-title">🌙 Mensagem Offline</h3>
+                            <div class="form-group">
+                                <label for="offline-msg">Exibida fora do horário comercial</label>
+                                <textarea id="offline-msg" rows="3" placeholder="No momento estamos offline...">No momento estamos offline, mas deixe sua mensagem que retornaremos em breve! 😊</textarea>
+                            </div>
+                        </div>
+
+                        <div class="config-section">
+                            <h3 class="config-title">⚡ Botões Rápidos</h3>
+                            <p class="config-desc">Opções que aparecem para o usuário clicar rapidamente</p>
+                            <div class="quick-actions-list" id="quick-actions-list">
+                                <!-- Filled by JS -->
+                            </div>
+                            <button class="btn-add" id="add-quick-action">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3V13M3 8H13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                Adicionar Botão Rápido
+                            </button>
+                        </div>
+
+                        <div class="config-section">
+                            <h3 class="config-title">✏️ Placeholder do Input</h3>
+                            <div class="form-group">
+                                <label for="input-placeholder">Texto do campo de digitação</label>
+                                <input type="text" id="input-placeholder" value="Digite sua mensagem..." placeholder="Ex: Como posso ajudar?">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Knowledge Base Page -->
+            <div class="page" id="page-knowledge">
+                <div class="config-layout">
+                    <div class="config-panel">
+                        <div class="config-section">
+                            <h3 class="config-title">📚 Base de Conhecimento</h3>
+                            <p class="config-desc">Cadastre perguntas e respostas para o seu chatbot responder automaticamente. O bot buscará a melhor resposta para o que o cliente perguntar.</p>
+                            <div class="faq-list" id="faq-list">
+                                <!-- Filled by JS -->
+                            </div>
+                            <button class="btn-add" id="add-faq">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3V13M3 8H13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                Adicionar Pergunta & Resposta
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Embed Code Page -->
+            <div class="page" id="page-embed">
+                <div class="config-layout">
+                    <div class="config-panel">
+                        <div class="config-section">
+                            <h3 class="config-title">🔗 Código de Integração</h3>
+                            <p class="config-desc">Copie e cole este código antes do fechamento da tag <code>&lt;/body&gt;</code> no HTML do seu site para adicionar o chatbot.</p>
+                            <div class="embed-code-wrap">
+                                <pre class="embed-code" id="embed-code"></pre>
+                                <button class="btn-copy" id="copy-embed">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 3H3V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                    Copiar Código
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="config-section">
+                            <h3 class="config-title">📋 Instruções</h3>
+                            <div class="instructions-list">
+                                <div class="instruction-step">
+                                    <span class="step-num">1</span>
+                                    <div>
+                                        <strong>Copie o código acima</strong>
+                                        <p>Clique no botão "Copiar Código" para copiar o script de integração.</p>
+                                    </div>
+                                </div>
+                                <div class="instruction-step">
+                                    <span class="step-num">2</span>
+                                    <div>
+                                        <strong>Cole no seu site</strong>
+                                        <p>Adicione o código antes da tag <code>&lt;/body&gt;</code> em todas as páginas onde deseja exibir o chatbot.</p>
+                                    </div>
+                                </div>
+                                <div class="instruction-step">
+                                    <span class="step-num">3</span>
+                                    <div>
+                                        <strong>Pronto!</strong>
+                                        <p>O chatbot aparecerá automaticamente com todas as suas configurações e base de conhecimento.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Live Preview Widget (always visible) -->
+        <div class="preview-container" id="preview-container">
+            <div class="preview-label">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M4 7C4 7 5.5 4 7 4C8.5 4 10 7 10 7C10 7 8.5 10 7 10C5.5 10 4 7 4 7Z" stroke="currentColor" stroke-width="1"/><circle cx="7" cy="7" r="1.5" fill="currentColor"/></svg>
+                Preview ao Vivo
+            </div>
+            <div class="preview-widget" id="preview-widget">
+                <div class="pw-header" id="pw-header">
+                    <div class="pw-avatar" id="pw-avatar">🤖</div>
+                    <div class="pw-info">
+                        <span class="pw-name" id="pw-name">Assistente Virtual</span>
+                        <span class="pw-status" id="pw-status"><span class="pw-online"></span> Online agora</span>
+                    </div>
+                    <button class="pw-close-btn">×</button>
+                </div>
+                <div class="pw-messages" id="pw-messages">
+                    <div class="pw-msg bot" id="pw-welcome-msg">
+                        <p>Olá! 👋 Como posso ajudá-lo hoje?</p>
+                    </div>
+                    <div class="pw-quick-actions" id="pw-quick-actions">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+                <div class="pw-input-area">
+                    <input type="text" id="pw-input" placeholder="Digite sua mensagem..." disabled>
+                    <button class="pw-send-btn" disabled>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8L14 2L8 14L6.5 9.5L2 8Z" fill="currentColor"/></svg>
+                    </button>
+                </div>
+            </div>
+            <button class="preview-fab" id="preview-fab">
+                <span class="fab-icon" id="fab-icon">🤖</span>
+            </button>
+            <button class="preview-toggle" id="preview-toggle">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <script src="client.js"></script>
+</body>
+</html>
